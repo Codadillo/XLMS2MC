@@ -33,15 +33,14 @@ int decryptCBlockDirCon(String cellString) {
   int out = 0; //define output
   if (nbt.contains('i')) {
     out += 8; //brings to conditional
-  }
-  if (nbt.contains('v')) {
-    out += 4; //x-
-  } else if (nbt.contains('^')) {
+  } if (nbt.contains('^')) {
     out += 5; //x+
   } else if (nbt.contains('>')) {
     out += 3;//z+
   } else if (nbt.contains('<')) {
     out += 2;//z-
+  } else {
+  out += 4; //x-
   }
   return out;
 }
