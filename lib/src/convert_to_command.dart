@@ -30,8 +30,8 @@ String decryptCBlockType(String cellString) {
 int decryptCBlockDirCon(String cellString) {
   final dissect = cellString.split(';'); //divorce command and nbt
   final nbt = dissect[0].toLowerCase(); //normalize nbt
-  int out; //define output
-  if (nbt.contains('c')) {
+  int out = 0; //define output
+  if (nbt.contains('i')) {
     out += 8; //brings to conditional
   }
   if (nbt.contains('v')) {
@@ -77,7 +77,7 @@ String commandFromValues(final x, final y, final z, final command, final dirCon,
       type[i] = '';
     }
     //iterable mc syntax shell for data
-    outputCommand += 'Block:command_block,Time:1,TileEntityData:{Command:"/setblock ' +x[i].toString() + ' ' + y[i].toString() + ' ' + z[i].toString() + ' ' + type[i] + 'command_block' + dirCon[i].toString() + '0 {Command:\\"' + command[i] + '\\"}"}';
+    outputCommand += 'Block:command_block,Time:1,TileEntityData:{Command:"/setblock ' + (0-x[i]).toString() + ' ' + y[i].toString() + ' ' + z[i].toString() + ' ' + type[i] + 'command_block ' + dirCon[i].toString() + ' 0 {Command:\\"' + command[i] + '\\"}"}';
     if (i != command.length-1) {
       outputCommand += ",Passengers:[{id:falling_block,";
       closer += '}]';
@@ -86,4 +86,3 @@ String commandFromValues(final x, final y, final z, final command, final dirCon,
   outputCommand += closer + '}'; //append closing parenthesis to command
   return outputCommand; //return final command
 }
-
