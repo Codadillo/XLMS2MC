@@ -17,5 +17,5 @@ To specify a square as containg a command block, type a semicolon (;) in that sq
 ">" Makes the command block face towards +z (or right in the spreadsheet).</p>
 "<" Makes the command block face towards -z (or left in the spreadsheet).</p>
 #### Examples:
-"RAV; /say XLMS2MC is great!" Is a repeating always active command block that contains the command "/say XLMS2MC is great!" and is facing towards -x.
+"RAV; /say XLMS2MC is great!" Is a repeating always active command block that contains the command "/say XLMS2MC is great!" and is facing towards -x.</p>
 "VCIA; /say It succeeds!!!!" Is a chain conditional always active command block that contains the command "/say it succeeds!!!!" and is facing towards -x.
