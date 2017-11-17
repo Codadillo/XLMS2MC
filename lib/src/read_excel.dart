@@ -13,8 +13,6 @@ String readCell(final z, final x, final path) { //the spreadsheet is oriented so
   final decoder = new SpreadsheetDecoder.decodeBytes(bytes); //decode the bytes into readable spreadsheet
   final table = decoder.tables['Sheet1']; //get 2d array of first sheet
   final values = table.rows[x]; //get values of desired row
-  print("length of values: " + values.length.toString());
-  print("requested z:" + z.toString());
   return values[z].toString(); //get desired value from row
 }
 
@@ -40,7 +38,7 @@ void finalCommand(String path, int cornerX, int cornerY, int cornerZ) {
   for (int z = 0; z < getDimensions(path)[0]; ++z) {
     for (int x = 0; x < getDimensions(path)[1]; ++x) {
       var content = readCell(z, x, path);
-      if (content.contains(';')) {
+      if (content.contains(';') && content[0] != '#') {
         commands.add(decryptCBlockCom(content));
         dirCons.add(decryptCBlockDirCon(content));
         types.add(decryptCBlockType(content));

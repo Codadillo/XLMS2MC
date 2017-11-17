@@ -76,7 +76,7 @@ String commandFromValues(final x, final y, final z, final command, final dirCon,
       type[i] = '';
     }
     //iterable mc syntax shell for data
-    outputCommand += 'Block:command_block,Time:1,TileEntityData:{Command:"/setblock ' + (0-x[i]+cornerX).toString() + ' ' + (y[i]+cornerY).toString() + ' ' + (z[i]+cornerZ).toString() + ' ' + type[i] + 'command_block ' + dirCon[i].toString() + ' 0 {auto:' + active[i] + ',Command:\\"' + command[i] + '\\"}"}';
+    outputCommand += 'Block:command_block,Time:1,TileEntityData:{Command:"/setblock ' + (0-x[i]+cornerX).toString() + ' ' + (y[i]+cornerY).toString() + ' ' + (z[i]+cornerZ).toString() + ' ' + type[i] + 'command_block ' + dirCon[i].toString() + ' 0 {auto:' + active[i].toString() + ',Command:\\"' + command[i] + '\\"}"}';
     if (i != command.length-1) {
       outputCommand += ",Passengers:[{id:falling_block,";
       closer += '}]';
