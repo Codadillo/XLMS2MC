@@ -66,7 +66,7 @@ bool decryptCBlockActive(String cellString) {
  * It's specific parameters are the coordinates, the command, the direction and conditionality, the poweredness, and the type of the block.
  * It returns a String with the copy and paste ready single command.
  */
-String commandFromValues(final x, final y, final z, final command, final dirCon, final active, final type) {
+String commandFromValues(final x, final y, final z, final command, final dirCon, final active, final type, int cornerX, int cornerY, int cornerZ) {
   String outputCommand = '/summon falling_block ~ ~1 ~ {'; //start the command
   String closer = ''; //start keeping track of final parenthesis in command (to comply with syntax)
   for (var i = 0; i < command.length; ++i) { //repeat for every block
@@ -77,7 +77,7 @@ String commandFromValues(final x, final y, final z, final command, final dirCon,
       type[i] = '';
     }
     //iterable mc syntax shell for data
-    outputCommand += 'Block:command_block,Time:1,TileEntityData:{Command:"/setblock ' + (0-x[i]).toString() + ' ' + y[i].toString() + ' ' + z[i].toString() + ' ' + type[i] + 'command_block ' + dirCon[i].toString() + ' 0 {Command:\\"' + command[i] + '\\"}"}';
+    outputCommand += 'Block:command_block,Time:1,TileEntityData:{Command:"/setblock ' + (0-x[i]+cornerX).toString() + ' ' + (y[i]+cornerY).toString() + ' ' + (z[i]+cornerZ).toString() + ' ' + type[i] + 'command_block ' + dirCon[i].toString() + ' 0 {Command:\\"' + command[i] + '\\"}"}';
     if (i != command.length-1) {
       outputCommand += ",Passengers:[{id:falling_block,";
       closer += '}]';

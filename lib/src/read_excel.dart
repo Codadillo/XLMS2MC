@@ -16,14 +16,13 @@ String readCell(final z, final x, final path) { //the spreadsheet is oriented so
   return values[z]; //get desired value from row
 }
 
-void finalCommand(String path) {
+void finalCommand(String path, int cornerX, int cornerY, int cornerZ) {
   List<int> zs = [];
   List<int> xs = [];
   List<String> commands = [];
   List<int> dirCons = [];
   List<String> types = [];
   List<bool> actives = [];
-
 
   for (int z = 0; z < 1; ++z) {
     for (int x = 0; x < 2; ++x) {
@@ -36,7 +35,7 @@ void finalCommand(String path) {
       xs.add(x);
     }
   }
-  print(commandFromValues(xs, [0, 0], zs, commands, dirCons, actives, types));
+  print(commandFromValues(xs, [0, 0], zs, commands, dirCons, actives, types, cornerX, cornerY, cornerZ));
 }
 
-main() => finalCommand("/Users/leoconr/Downloads/Workbook1.xlsx");
+main() => finalCommand("/Users/leoconr/Downloads/Workbook1.xlsx", 2, 4, 4);
