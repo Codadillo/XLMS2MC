@@ -1,0 +1,5 @@
+name: XLMS2MC
+author: Codadillo
+version: 1.0.0
+dependencies:
+   spreadsheet_decoder: '^0.3.2'
