@@ -30,11 +30,11 @@ List<int> getDimensions(path) {
 void finalCommand(String path, int cornerX, int cornerY, int cornerZ) {
   List<int> zs = [];
   List<int> xs = [];
+  List<int> ys = [];
   List<String> commands = [];
   List<int> dirCons = [];
   List<String> types = [];
   List<bool> actives = [];
-  print(getDimensions(path)[0].toString() + ", " + getDimensions(path)[1].toString());
   for (int z = 0; z < getDimensions(path)[0]; ++z) {
     for (int x = 0; x < getDimensions(path)[1]; ++x) {
       var content = readCell(z, x, path);
@@ -45,11 +45,13 @@ void finalCommand(String path, int cornerX, int cornerY, int cornerZ) {
         actives.add(decryptCBlockActive(content));
         zs.add(z);
         xs.add(x);
+        ys.add(0);
       }
     }
   }
-  print(commandFromValues(xs, [0, 0], zs, commands, dirCons, actives, types, cornerX, cornerY, cornerZ));
+  print(commands);
+  print(commandFromValues(xs, ys, zs, commands, dirCons, actives, types, cornerX, cornerY, cornerZ));
 }
 
 
-main() => finalCommand("/Users/leoconr/Downloads/Workbook1.xlsx", 2, 4, 4);
+main() => finalCommand("/Users/leoconr/Downloads/test.xlsx", 2, 4, 4);
