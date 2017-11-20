@@ -1,5 +1,17 @@
 name: XLMS2MC
 author: Codadillo
 version: 1.0.0
+
 dependencies:
    spreadsheet_decoder: '^0.3.2'
+
+dev_dependencies:
+  browser: ^0.10.0
+  dart_to_js_script_rewriter: ^1.0.1
+
+transformers:
+- dart_to_js_script_rewriter
+
+web:
+  compiler:
+    debug: dartdevc

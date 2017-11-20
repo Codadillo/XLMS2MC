@@ -67,21 +67,29 @@ bool decryptCBlockActive(String cellString) {
  */
 String commandFromValues(final x, final y, final z, final command, final dirCon, final active, final type, int cornerX, int cornerY, int cornerZ) {
   String outputCommand = '/summon falling_block ~ ~1 ~ {'; //start the command
-  String closer = ''; //start keeping track of final parenthesis in command (to comply with syntax)
-  for (var i = 0; i < command.length; ++i) { //repeat for every block
+  String closer = ''; // start keeping track of final parenthesis in command (to comply with syntax)
+  for (var i = 0; i < command.length; ++i) { // repeat for every block
     //reformat block type
     if(type[i] != 'impulse') {
       type[i] += '_';
     } else {
       type[i] = '';
     }
-    //iterable mc syntax shell for data
-    outputCommand += 'Block:command_block,Time:1,TileEntityData:{Command:"/setblock ' + (0-x[i]+cornerX).toString() + ' ' + (y[i]+cornerY).toString() + ' ' + (z[i]+cornerZ).toString() + ' ' + type[i] + 'command_block ' + dirCon[i].toString() + ' 0 {auto:' + active[i].toString() + ',Command:\\"' + command[i] + '\\"}"}';
-    if (i != command.length-1) {
+    // iterable mc syntax shell for data
+    outputCommand += (
+        'Block:command_block,Time:1,TileEntityData:{auto:1,Command:"/setblock ${(-x[i] + cornerX).toString()}'
+        ' ${(y[i] + cornerY).toString()} ${(z[i] + cornerZ).toString()} ${type[i]} command_block'
+        ' ${dirCon[i].toString()} replace {auto: ${active[i].toString()},Command:\\"${command[i]}\\"}"}'
+    );
+
+    if (i != command.length - 1) {
       outputCommand += ",Passengers:[{id:falling_block,";
-      closer += '}]';
+    } else {
+      outputCommand += ',Passengers:[{id:falling_block,Block:command_block,Time:1,TileEntityData:{auto:1,Command:"/fill ~ ~ ~ ~ ~' + (0-i-2).toString() + ' ~ air"}';
+
     }
+    closer += '}]';
   }
-  outputCommand += closer + '}'; //append closing parenthesis to command
-  return outputCommand; //return final command
+  outputCommand += closer + '}';
+  return outputCommand;
 }

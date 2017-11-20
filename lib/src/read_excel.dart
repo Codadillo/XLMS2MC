@@ -49,9 +49,9 @@ void finalCommand(String path, int cornerX, int cornerY, int cornerZ) {
       }
     }
   }
-  print(commands);
+  //print(commands);
   print(commandFromValues(xs, ys, zs, commands, dirCons, actives, types, cornerX, cornerY, cornerZ));
 }
 
 
-main() => finalCommand("/Users/leoconr/Downloads/test.xlsx", 2, 4, 4);
+main() => finalCommand("/Users/leoconr/Downloads/vilagtest.xlsx", 8, 4, 16);
