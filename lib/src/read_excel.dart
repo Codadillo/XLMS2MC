@@ -7,51 +7,52 @@ import 'convert_to_command.dart';
  * It takes in coordinates of the cell and path of the workbook.
  * It returns the content of the cell in a String.
  */
-String readCell(final z, final x, final path) { //the spreadsheet is oriented so z+ is right and x- is down, but the spreadsheet's coords are based on down being + (z, -x) = (x, y)
-  final newUri = Uri.parse(path); //get Uri from file path
-  final bytes = new File.fromUri(newUri).readAsBytesSync(); //read the file into bytes
-  final decoder = new SpreadsheetDecoder.decodeBytes(bytes); //decode the bytes into readable spreadsheet
-  final table = decoder.tables['Sheet1']; //get 2d array of first sheet
-  final values = table.rows[x]; //get values of desired row
-  return values[z].toString(); //get desired value from row
-}
+class spreadsheetInfo {
+  List<int> bytes;
+  var decoder;
+  var table;
+  spreadsheetInfo(List<int> bytes) {
+    this.bytes = bytes;
+    this.decoder = new SpreadsheetDecoder.decodeBytes(bytes);
+    this.table = decoder.tables['Sheet1'];
+  }
 
-List<int> getDimensions(path) {
-  final newUri = Uri.parse(path); //get Uri from file path
-  final bytes = new File.fromUri(newUri).readAsBytesSync(); //read the file into bytes
-  final decoder = new SpreadsheetDecoder.decodeBytes(bytes); //decode the bytes into readable spreadsheet
-  final table = decoder.tables['Sheet1']; //get 2d array of first sheet
-  final rows = table.rows;
-  int height = rows.length;
-  int width = rows[0].length;
-  return [width, height];
-}
+  String readCell(final z, final x) {
+    final values = table.rows[x]; //get values of desired row
+    return values[z].toString(); //get desired value from row
+  }
 
-void finalCommand(String path, int cornerX, int cornerY, int cornerZ) {
-  List<int> zs = [];
-  List<int> xs = [];
-  List<int> ys = [];
-  List<String> commands = [];
-  List<int> dirCons = [];
-  List<String> types = [];
-  List<bool> actives = [];
-  for (int z = 0; z < getDimensions(path)[0]; ++z) {
-    for (int x = 0; x < getDimensions(path)[1]; ++x) {
-      var content = readCell(z, x, path);
-      if (content.contains(';') && content[0] != '#') {
-        commands.add(decryptCBlockCom(content));
-        dirCons.add(decryptCBlockDirCon(content));
-        types.add(decryptCBlockType(content));
-        actives.add(decryptCBlockActive(content));
-        zs.add(z);
-        xs.add(x);
-        ys.add(0);
+  List<int> getDimensions() {
+    final rows = table.rows;
+    final height = rows.length;
+    final width = rows[0].length;
+    return [width, height];
+  }
+  
+  void finalCommand(List<int> bytes, int cornerX, int cornerY, int cornerZ) {
+    List<int> zs = [];
+    List<int> xs = [];
+    List<int> ys = [];
+    List<String> commands = [];
+    List<int> dirCons = [];
+    List<String> types = [];
+    List<bool> actives = [];
+    for (int z = 0; z < getDimensions()[0]; ++z) {
+      for (int x = 0; x < getDimensions()[1]; ++x) {
+        var content = readCell(z, x);
+        if (content.contains(';') && content[0] != '#') {
+          commands.add(decryptCBlockCom(content));
+          dirCons.add(decryptCBlockDirCon(content));
+          types.add(decryptCBlockType(content));
+          actives.add(decryptCBlockActive(content));
+          zs.add(z);
+          xs.add(x);
+          ys.add(0);
+        }
       }
     }
+    print(commandFromValues(xs, ys, zs, commands, dirCons, actives, types, cornerX, cornerY, cornerZ));
   }
-  //print(commands);
-  print(commandFromValues(xs, ys, zs, commands, dirCons, actives, types, cornerX, cornerY, cornerZ));
 }
 
 
-main() => finalCommand("/Users/leoconr/Downloads/vilagtest.xlsx", 8, 4, 16);
