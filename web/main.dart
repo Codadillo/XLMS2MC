@@ -11,13 +11,15 @@ void main() {
 
 Future<Null> onFormSubmit(Event event) async {
   final input = querySelector('#file-input') as FileUploadInputElement;
+  final output = querySelector('#output');
   List<File> files = input.files;
 
   if (files.isEmpty) {
-    // yell at the user
+    output.text = "Woah there budy-o, you got'tsa input a fily-o";
+    event.preventDefault();
   } else {
     Uint8List bytes = await readFile(files.first);
-    new spreadsheetInfo(bytes).finalCommand(0, 0, 0);
+    output.text = new spreadsheetInfo(bytes).finalCommand(0, 0, 0);
   }
 }
 

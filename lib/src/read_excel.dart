@@ -28,7 +28,7 @@ class spreadsheetInfo {
     return [width, height];
   }
 
-  void finalCommand(int cornerX, int cornerY, int cornerZ) {
+  String finalCommand(int cornerX, int cornerY, int cornerZ) {
     List<int> zs = [];
     List<int> xs = [];
     List<int> ys = [];
@@ -50,7 +50,7 @@ class spreadsheetInfo {
         }
       }
     }
-    print(commandFromValues(xs, ys, zs, commands, dirCons, actives, types, cornerX, cornerY, cornerZ));
+    return commandFromValues(xs, ys, zs, commands, dirCons, actives, types, cornerX, cornerY, cornerZ);
   }
 }
 
