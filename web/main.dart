@@ -17,9 +17,13 @@ Future<Null> onFormSubmit(Event event) async {
   if (files.isEmpty) {
     output.text = "Woah there budy-o, you got'tsa input a fily-o";
     event.preventDefault();
+  } else if (input.value.split(".")[1] != "xlsx") {
+    output.text = "You must submit a file of the type '.xlsx'.";
+    event.preventDefault();
   } else {
     Uint8List bytes = await readFile(files.first);
     output.text = new spreadsheetInfo(bytes).finalCommand(0, 0, 0);
+    event.preventDefault();
   }
 }
 
