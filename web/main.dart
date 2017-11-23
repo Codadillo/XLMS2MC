@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:html';
 import 'dart:typed_data';
-
 import 'package:xlsx2mc/xlsx2mc.dart';
+
 
 void main() {
   final form = querySelector('#spreadsheet-form');
@@ -10,15 +10,15 @@ void main() {
 }
 
 Future<Null> onFormSubmit(Event event) async {
-  final input = querySelector('#file-input');
+  final input = querySelector('#file-input') as FileUploadInputElement;
   List<File> files = input.files;
 
   if (files.isEmpty) {
     // yell at the user
+  } else {
+    Uint8List bytes = await readFile(files.first);
+    new spreadsheetInfo(bytes).finalCommand(0, 0, 0);
   }
-
-  Uint8List bytes = await readFile(files.first);
-
 }
 
 Future<Uint8List> readFile(Blob blob) {

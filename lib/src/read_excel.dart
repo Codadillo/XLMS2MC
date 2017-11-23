@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:spreadsheet_decoder/spreadsheet_decoder.dart';
 import 'convert_to_command.dart';
 
@@ -9,8 +8,8 @@ import 'convert_to_command.dart';
  */
 class spreadsheetInfo {
   List<int> bytes;
-  var decoder;
-  var table;
+  SpreadsheetDecoder decoder;
+  SpreadsheetTable table;
   spreadsheetInfo(List<int> bytes) {
     this.bytes = bytes;
     this.decoder = new SpreadsheetDecoder.decodeBytes(bytes);
@@ -28,8 +27,8 @@ class spreadsheetInfo {
     final width = rows[0].length;
     return [width, height];
   }
-  
-  void finalCommand(List<int> bytes, int cornerX, int cornerY, int cornerZ) {
+
+  void finalCommand(int cornerX, int cornerY, int cornerZ) {
     List<int> zs = [];
     List<int> xs = [];
     List<int> ys = [];
