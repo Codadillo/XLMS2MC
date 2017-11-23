@@ -6,14 +6,13 @@ import 'convert_to_command.dart';
  * It takes in coordinates of the cell and path of the workbook.
  * It returns the content of the cell in a String.
  */
-class spreadsheetInfo {
+class SpreadsheetInfo {
   List<int> bytes;
   SpreadsheetDecoder decoder;
   SpreadsheetTable table;
-  spreadsheetInfo(List<int> bytes) {
-    this.bytes = bytes;
-    this.decoder = new SpreadsheetDecoder.decodeBytes(bytes);
-    this.table = decoder.tables['Sheet1'];
+  SpreadsheetInfo(this.bytes) {
+    decoder = new SpreadsheetDecoder.decodeBytes(bytes);
+    table = decoder.tables['Sheet1'];
   }
 
   String readCell(final z, final x) {

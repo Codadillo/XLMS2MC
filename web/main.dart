@@ -22,7 +22,7 @@ Future<Null> onFormSubmit(Event event) async {
   } else {
 //    print((await readFile(files.first)).runtimeType);
     Uint8List bytes = await readFile(files.first);
-    output.text = new spreadsheetInfo(bytes).finalCommand(0, 0, 0);
+    output.text = new SpreadsheetInfo(bytes).finalCommand(0, 0, 0);
 
   }
 }
