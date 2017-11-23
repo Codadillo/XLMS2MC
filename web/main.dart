@@ -3,17 +3,31 @@ import 'dart:html';
 import 'dart:typed_data';
 import 'package:xlsx2mc/xlsx2mc.dart';
 
+
+
 void main() {
+  final copyButton = querySelector("#copy");
   final form = querySelector('#spreadsheet-form');
   form.onSubmit.listen(onFormSubmit);
+  copyButton.onClick.listen(copy);
+}
+
+
+
+void copy(Event event) {
+  final output = querySelector('#output') as TextAreaElement;
+  document.body.nodes.addAll([querySelector("#copy"), output]);
+  print("alive");
+  output.select();
+  document.execCommand('copy', null, "");
 }
 
 Future<Null> onFormSubmit(Event event) async {
   final inputSheet = querySelector('#file-input') as FileUploadInputElement;
+  final output = querySelector('#output');
   final cornerX = int.parse((querySelector('#cornerX') as InputElement).value);
   final cornerY = int.parse((querySelector('#cornerY') as InputElement).value);
   final cornerZ = int.parse((querySelector('#cornerZ') as InputElement).value);
-  final output = querySelector('#output');
   List<File> files = inputSheet.files;
   event.preventDefault();
   if (files.isEmpty) {
