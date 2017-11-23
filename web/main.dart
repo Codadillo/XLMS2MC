@@ -9,21 +9,20 @@ void main() {
 }
 
 Future<Null> onFormSubmit(Event event) async {
-  final input = querySelector('#file-input') as FileUploadInputElement;
+  final inputSheet = querySelector('#file-input') as FileUploadInputElement;
+  final cornerX = int.parse((querySelector('#cornerX') as InputElement).value);
+  final cornerY = int.parse((querySelector('#cornerY') as InputElement).value);
+  final cornerZ = int.parse((querySelector('#cornerZ') as InputElement).value);
   final output = querySelector('#output');
-  List<File> files = input.files;
+  List<File> files = inputSheet.files;
   event.preventDefault();
   if (files.isEmpty) {
     output.text = "Woah there budy-o, you got'tsa input a fily-o";
-//    event.preventDefault();
-  } else if (input.value.split(".")[1] != "xlsx") {
+  } else if (inputSheet.value.split(".")[1] != "xlsx") {
     output.text = "You must submit a file of the type '.xlsx'.";
-//    event.preventDefault();
   } else {
-//    print((await readFile(files.first)).runtimeType);
     Uint8List bytes = await readFile(files.first);
-    output.text = new SpreadsheetInfo(bytes).finalCommand(0, 0, 0);
-
+    output.text = new SpreadsheetInfo(bytes).generateCommand(cornerX, cornerY, cornerZ);
   }
 }
 

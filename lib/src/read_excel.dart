@@ -12,7 +12,7 @@ class SpreadsheetInfo {
   SpreadsheetTable table;
   SpreadsheetInfo(this.bytes) {
     decoder = new SpreadsheetDecoder.decodeBytes(bytes);
-    table = decoder.tables['Sheet1'];
+    table = decoder.tables.values.first;
   }
 
   String readCell(final z, final x) {
@@ -27,7 +27,7 @@ class SpreadsheetInfo {
     return [width, height];
   }
 
-  String finalCommand(int cornerX, int cornerY, int cornerZ) {
+  String generateCommand(int cornerX, int cornerY, int cornerZ) {
     List<int> zs = [];
     List<int> xs = [];
     List<int> ys = [];
