@@ -8,10 +8,16 @@
     <script defer src="packages/browser/dart.js"></script>
 </head>
 <body>
+    <h1 id="title">XLSX-2-MC</h1>
     <form id="spreadsheet-form">
         <p>.xlsx workbook file:</p> <input id="file-input" type="file" name="spreadsheet" accept=".xlsx">
-        <p>In game coordinates of A1:</p> X: <input id="cornerX" type="text" value="0"> Y: <input id="cornerY" type="text" value="0"> Z: <input id="cornerZ" type="text" value="0">
-        </p><input type="submit">
+        <p>In game coordinates of A1:</p>
+        X: <input id="cornerX" type="text" value="0">
+        <p></p>
+        Y: <input id="cornerY" type="text" value="0">
+        <p></p>
+        Z: <input id="cornerZ" type="text" value="0">
+        <p></p><input id="submit" type="submit">
     </form>
     <p id="output"></p>
 </body>

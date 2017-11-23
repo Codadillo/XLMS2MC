@@ -1,0 +1,41 @@
+body {
+    margin: auto;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-image: url(excel.png);
+    max-width: 250px;
+}
+
+#title {
+    border: 1px solid grey;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: white;
+}
+
+#spreadsheet-form {
+    border: 1px solid grey;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: white;
+}
+
+#submit {
+    color: #ffffff;
+    background-color: #28a745;
+    background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%);
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #28a745;
+    width: 200px;
+    height: 34px;
+    font-size: 14px;
+    font-weight: bold;
+    border-width: 0.5px;
+    margin-bottom: 15px;
+}
+
+#output {
+    border: 1px solid grey;
+    background-color: white;
+}
