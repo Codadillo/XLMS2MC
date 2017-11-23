@@ -1,8 +1,11 @@
 body {
-    margin: auto;
-    text-align: center;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     background-image: url(excel.png);
+}
+
+.submission {
+    margin: auto;
+    text-align: center;
     max-width: 250px;
 }
 
@@ -11,13 +14,23 @@ body {
     padding-left: 10px;
     padding-right: 10px;
     background-color: white;
+    background:rgb(255,255,255);  
+    background: transparent\9;  
+    background:rgba(255,255,255,0.7);  
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000,endColorstr=#66000000);  
+    zoom: 1;
 }
 
 #spreadsheet-form {
     border: 1px solid grey;
     padding-left: 10px;
     padding-right: 10px;
-    background-color: white;
+    margin-bottom: 10px;
+    background:rgb(255,255,255);  
+    background: transparent\9;  
+    background:rgba(255,255,255,0.7);  
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000,endColorstr=#66000000);  
+    zoom: 1;
 }
 
 #submit {
@@ -38,4 +51,23 @@ body {
 #output {
     border: 1px solid grey;
     background-color: white;
+    background:rgb(255,255,255);  
+    background: transparent\9;  
+    background:rgba(255,255,255,0.7);  
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000,endColorstr=#66000000);  
+    zoom: 1;
+}
+
+.howto {
+    margin-left: 38px;
+    border: 1px solid grey;
+    
+    padding-left: 20px;
+    padding-right: 20px;
+    background:rgb(255,255,255);  
+    background: transparent\9;  
+    background:rgba(255,255,255,0.5);  
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000,endColorstr=#66000000);  
+    zoom: 1;
+    
 }

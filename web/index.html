@@ -8,17 +8,40 @@
     <script defer src="packages/browser/dart.js"></script>
 </head>
 <body>
-    <h1 id="title">XLSX-2-MC</h1>
-    <form id="spreadsheet-form">
-        <p>.xlsx workbook file:</p> <input id="file-input" type="file" name="spreadsheet" accept=".xlsx">
-        <p>In game coordinates of A1:</p>
-        X: <input id="cornerX" type="text" value="0">
-        <p></p>
-        Y: <input id="cornerY" type="text" value="0">
-        <p></p>
-        Z: <input id="cornerZ" type="text" value="0">
-        <p></p><input id="submit" type="submit">
-    </form>
-    <p id="output"></p>
+    <div class="submission">
+        <h1 id="title">XLSX-2-MC</h1>
+        <form id="spreadsheet-form">
+            <p>.xlsx workbook file:</p> <input id="file-input" type="file" name="spreadsheet" accept=".xlsx">
+            <p>In game coordinates of A1:</p>
+            X: <input id="cornerX" type="text" value="0">
+            <p></p>
+            Y: <input id="cornerY" type="text" value="0">
+            <p></p>
+            Z: <input id="cornerZ" type="text" value="0">
+            <p></p><input id="submit" type="submit">
+        </form>
+        <textarea readonly id="output"></textarea>
+    </div>
+    <div class="howto">
+        <h2>XLSX-2-MC:</h2>
+        <h4>Description:</h4>
+        <p>XLSX2MC is a project that allows you to use excel's powerful iterable tools to create command blocks inside a spreadsheet, and then export them to your Minecraft world.</p>
+        <h4>Spreadsheet Specifications:</h4>
+        <p>To start, create a file in excel or google sheets (you just need to be able to export it into .xlms). You can name the document whatever you want, as long as you keep everything you want to export in the first sheet. 
+        The way the spreadsheet translates to minecraft is simple. The columns of the spreadsheet represent z values, and the rows represent x values (all y values are 0). For example, something in square A1 would be in block (0, 0, 0) in minecraft. Don't worry, though, you can set the position of A1 in your minecraft world to specify a start position. For example if you set A1 to be (2, 2, 2), then A2 would be (2, 2, 1). </p>
+        <h3>Making a Command:</h3>
+        <p>To specify a square as containg a command block, type a semicolon (;) in that square. Everything you type before the semicolon will customize the command block, and everything after the semicolon will be the command in the command block. Before the semicolon, there our a number of codes you can put to specify different things about the command block. These codes can be uppercase or lowercase and in no specific order. If you specify no codes, the command block will default to be impulse, facing towards -x, uncoditional, and unpowered.</p>
+        <p>"C" Makes the command block a chain command block.</p>
+        <p>"R" Makes the command block a repeating command block.</p>
+        <p>The command block is by default an impulse block.</p>
+        <p>"I" Makes the command block conditional.</p>
+        <p>"^" Makes the command block face towards +x (or up in the spreadsheet).</p>
+        <p>"V" Makes the command block face towards -x (or down in the spreadhseet).</p>
+        <p>">" Makes the command block face towards +z (or right in the spreadsheet).</p>
+        <p>"" Makes the command block face towards -z (or left in the spreadsheet).</p>
+        <h4>Examples:</h4>
+        <p>"RAV; /say XLSX2MC is great!" Is a repeating always active command block that contains the command "/say XLSX2MC is great!" and is facing towards -x.</p>
+        <p>"VCIA; /say It succeeds!!!!" Is a chain conditional always active command block that contains the command "/say it succeeds!!!!" and is facing towards -x.</p>
+    </div>
 </body>
 </html>
